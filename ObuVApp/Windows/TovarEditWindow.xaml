@@ -1,0 +1,127 @@
+<Window x:Class="ObuVApp.Windows.TovarEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Товар" Height="580" Width="500"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Icon="/Resources/Icon.ico"
+        Background="#FFFFFF"
+        FontFamily="Times New Roman">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TbTitle" Grid.Row="0" FontSize="18" FontWeight="Bold"
+                   Margin="0,0,0,16" FontFamily="Times New Roman"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Артикул *" FontFamily="Times New Roman"/>
+                <TextBox x:Name="TbArticul" Height="30" Margin="0,2,0,10"
+                         FontFamily="Times New Roman" Padding="4,2"
+                         BorderBrush="#7FFF00" BorderThickness="2"/>
+
+                <TextBlock Text="Наименование *" FontFamily="Times New Roman"/>
+                <TextBox x:Name="TbName" Height="30" Margin="0,2,0,10"
+                         FontFamily="Times New Roman" Padding="4,2"
+                         BorderBrush="#7FFF00" BorderThickness="2"/>
+
+                <TextBlock Text="Категория *" FontFamily="Times New Roman"/>
+                <ComboBox x:Name="CbCategory" Height="30" Margin="0,2,0,10"
+                          FontFamily="Times New Roman" IsEditable="True"/>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Цена (руб.) *" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbPrice" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Скидка (%)" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbDiscount" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2" Text="0"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Поставщик *" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbSupplier" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Производитель *" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbManufacturer" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Кол-во на складе *" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbQty" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2" Text="0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Ед. измерения" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbUnit" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2" Text="шт."/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Описание" FontFamily="Times New Roman"/>
+                <TextBox x:Name="TbDesc" Height="60" Margin="0,2,0,10"
+                         FontFamily="Times New Roman" Padding="4,2"
+                         BorderBrush="#7FFF00" BorderThickness="2"
+                         TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                <TextBlock Text="Имя файла фото (например: 1.jpg)" FontFamily="Times New Roman"/>
+                <TextBox x:Name="TbPhoto" Height="30" Margin="0,2,0,0"
+                         FontFamily="Times New Roman" Padding="4,2"
+                         BorderBrush="#7FFF00" BorderThickness="2"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Margin="0,16,0,0">
+            <TextBlock x:Name="TbError" Foreground="Red" Margin="0,0,0,8"
+                       FontFamily="Times New Roman" TextWrapping="Wrap"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Сохранить" Height="36" FontFamily="Times New Roman" FontSize="13"
+                        Background="#00FA9A" BorderThickness="0" Cursor="Hand"
+                        Click="BtnSave_Click"/>
+                <Button Grid.Column="2" Content="Отмена" Height="36" FontFamily="Times New Roman" FontSize="13"
+                        Background="#7FFF00" BorderThickness="0" Cursor="Hand"
+                        Click="BtnCancel_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

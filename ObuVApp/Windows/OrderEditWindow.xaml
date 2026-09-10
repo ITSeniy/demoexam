@@ -1,0 +1,121 @@
+<Window x:Class="ObuVApp.Windows.OrderEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заказ" Height="620" Width="680"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Icon="/Resources/Icon.ico"
+        Background="#FFFFFF"
+        FontFamily="Times New Roman">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TbTitle" Grid.Row="0" FontSize="18" FontWeight="Bold"
+                   Margin="0,0,0,16" FontFamily="Times New Roman"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Дата заказа *" FontFamily="Times New Roman"/>
+                        <DatePicker x:Name="DpOrderDate" Height="30" Margin="0,2,0,0"
+                                    FontFamily="Times New Roman"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Дата доставки *" FontFamily="Times New Roman"/>
+                        <DatePicker x:Name="DpDeliveryDate" Height="30" Margin="0,2,0,0"
+                                    FontFamily="Times New Roman"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Пункт выдачи *" FontFamily="Times New Roman"/>
+                <ComboBox x:Name="CbPickup" Height="30" Margin="0,2,0,10"
+                          FontFamily="Times New Roman" DisplayMemberPath="Адрес"/>
+
+                <TextBlock Text="ФИО клиента *" FontFamily="Times New Roman"/>
+                <TextBox x:Name="TbClient" Height="30" Margin="0,2,0,10"
+                         FontFamily="Times New Roman" Padding="4,2"
+                         BorderBrush="#7FFF00" BorderThickness="2"/>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Код получения *" FontFamily="Times New Roman"/>
+                        <TextBox x:Name="TbCode" Height="30" Margin="0,2,0,0"
+                                 FontFamily="Times New Roman" Padding="4,2"
+                                 BorderBrush="#7FFF00" BorderThickness="2"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Статус *" FontFamily="Times New Roman"/>
+                        <ComboBox x:Name="CbStatus" Height="30" Margin="0,2,0,0"
+                                  FontFamily="Times New Roman">
+                            <ComboBoxItem Content="Новый"/>
+                            <ComboBoxItem Content="Завершен"/>
+                            <ComboBoxItem Content="Отменен"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Позиции заказа -->
+                <TextBlock Text="Состав заказа" FontWeight="Bold" FontFamily="Times New Roman"
+                           Margin="0,8,0,6"/>
+
+                <DataGrid x:Name="DgItems" AutoGenerateColumns="False"
+                          CanUserDeleteRows="False" CanUserAddRows="False"
+                          GridLinesVisibility="Horizontal" FontFamily="Times New Roman"
+                          FontSize="13" MaxHeight="160" Margin="0,0,0,6">
+                    <DataGrid.Columns>
+                        <DataGridComboBoxColumn Header="Товар" Width="*"
+                            SelectedValueBinding="{Binding АртикулТовара}"
+                            DisplayMemberPath="НаименованиеТовара"
+                            SelectedValuePath="Артикул"/>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Количество}" Width="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="+ Добавить позицию" Height="28" Padding="10,0"
+                            Margin="0,0,8,0" FontFamily="Times New Roman" FontSize="12"
+                            Background="#00FA9A" BorderThickness="0" Cursor="Hand"
+                            Click="BtnAddItem_Click"/>
+                    <Button Content="Удалить выбранную" Height="28" Padding="10,0"
+                            FontFamily="Times New Roman" FontSize="12"
+                            Background="Salmon" BorderThickness="0" Cursor="Hand"
+                            Click="BtnRemoveItem_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Margin="0,16,0,0">
+            <TextBlock x:Name="TbError" Foreground="Red" Margin="0,0,0,8"
+                       FontFamily="Times New Roman" TextWrapping="Wrap"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Сохранить" Height="36" FontFamily="Times New Roman" FontSize="13"
+                        Background="#00FA9A" BorderThickness="0" Cursor="Hand"
+                        Click="BtnSave_Click"/>
+                <Button Grid.Column="2" Content="Отмена" Height="36" FontFamily="Times New Roman" FontSize="13"
+                        Background="#7FFF00" BorderThickness="0" Cursor="Hand"
+                        Click="BtnCancel_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

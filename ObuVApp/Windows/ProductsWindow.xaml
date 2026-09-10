@@ -1,0 +1,125 @@
+<Window x:Class="ObuVApp.Windows.ProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ООО «Обувь» — Товары" Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Icon.ico"
+        Background="#FFFFFF"
+        FontFamily="Times New Roman"
+        Closing="Window_Closing">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Grid Grid.Row="0" Background="#7FFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="16,10">
+                <Image Source="/Resources/picture.png" Height="50" Stretch="Uniform" Margin="0,0,12,0"/>
+                <TextBlock Text="ООО «Обувь»" FontSize="22" FontWeight="Bold"
+                           VerticalAlignment="Center" FontFamily="Times New Roman"/>
+            </StackPanel>
+            <TextBlock x:Name="TbUserInfo" Grid.Column="1" VerticalAlignment="Center"
+                       HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="14"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,0">
+                <Button x:Name="BtnOrders" Content="Заказы" Height="32" Padding="16,0"
+                        Margin="0,0,8,0" FontFamily="Times New Roman" FontSize="13"
+                        Background="#00FA9A" BorderThickness="0" Cursor="Hand"
+                        Click="BtnOrders_Click" Visibility="Collapsed"/>
+                <Button Content="Выход" Height="32" Padding="16,0"
+                        FontFamily="Times New Roman" FontSize="13"
+                        Background="White" BorderBrush="#7FFF00" BorderThickness="1"
+                        Cursor="Hand" Click="BtnExit_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Панель фильтров (только для менеджера/администратора) -->
+        <Border Grid.Row="1" x:Name="FilterPanel" Background="#F5F5F5"
+                Padding="12,8" Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="TbSearch" Grid.Column="0" Height="32" Margin="0,0,8,0"
+                         FontFamily="Times New Roman" FontSize="13" Padding="6,4"
+                         BorderBrush="#7FFF00" BorderThickness="2"
+                         TextChanged="Filter_Changed"
+                         Tag="Поиск по наименованию или артикулу...">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <VisualBrush AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Label Content="Поиск по наименованию или артикулу..."
+                                                           Foreground="Gray" FontFamily="Times New Roman"/>
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <TextBlock Grid.Column="1" Text="Категория:" VerticalAlignment="Center"
+                           Margin="0,0,6,0" FontFamily="Times New Roman"/>
+                <ComboBox x:Name="CbCategory" Grid.Column="2" Width="160" Height="32"
+                          FontFamily="Times New Roman" Margin="0,0,8,0"
+                          SelectionChanged="Filter_Changed"/>
+
+                <TextBlock Grid.Column="3" Text="Сортировка:" VerticalAlignment="Center"
+                           Margin="0,0,6,0" FontFamily="Times New Roman"/>
+                <ComboBox x:Name="CbSort" Grid.Column="4" Width="200" Height="32"
+                          FontFamily="Times New Roman" SelectionChanged="Filter_Changed">
+                    <ComboBoxItem Content="По умолчанию"/>
+                    <ComboBoxItem Content="Цена ↑"/>
+                    <ComboBoxItem Content="Цена ↓"/>
+                    <ComboBoxItem Content="Наименование А-Я"/>
+                    <ComboBoxItem Content="Наименование Я-А"/>
+                    <ComboBoxItem Content="Скидка ↑"/>
+                    <ComboBoxItem Content="Скидка ↓"/>
+                </ComboBox>
+            </Grid>
+        </Border>
+
+        <!-- Список товаров -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="ProductsPanel" Margin="12"/>
+        </ScrollViewer>
+
+        <!-- Нижняя панель (только для администратора) -->
+        <Border Grid.Row="3" x:Name="AdminPanel" Background="#F5F5F5"
+                Padding="12,8" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="TbCount" VerticalAlignment="Center"
+                           Margin="0,0,16,0" FontFamily="Times New Roman"/>
+                <Button Content="+ Добавить товар" Height="34" Padding="16,0"
+                        FontFamily="Times New Roman" FontSize="13"
+                        Background="#00FA9A" BorderThickness="0" Cursor="Hand"
+                        Click="BtnAddTovar_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

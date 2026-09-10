@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import sys; data=sys.stdin.buffer.read\\(\\); print\\(data.decode\\('cp866', errors='replace'\\)[:8000]\\)\")",
+      "Bash(pip install *)",
+      "Bash(dotnet --version)",
+      "Bash(dotnet new *)",
+      "Bash(findstr -i wpf)",
+      "Bash(dotnet add *)",
+      "Bash(mkdir \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Database\")",
+      "Bash(mkdir \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Models\")",
+      "Bash(mkdir \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Windows\")",
+      "Bash(mkdir \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Resources\")",
+      "Bash(Copy-Item 'C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\docs\\\\Модуль 1\\\\Прил_2_ОЗ_КОД 09.02.07-2-2026-М1\\\\import\\\\*.jpg' 'C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Resources\" 2>&1 *)",
+      "Bash(Copy-Item \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\docs\\\\Модуль 1\\\\Прил_2_ОЗ_КОД 09.02.07-2-2026-М1\\\\import\\\\*.ico\" \"C:\\\\Users\\\\ITSeniy\\\\source\\\\DemoExam\\\\ObuVApp\\\\Resources\\\\\" 2>&1)",
+      "Bash(dotnet build *)",
+      "Bash(sqlcmd *)",
+      "PowerShell(Invoke-Sqlcmd *)",
+      "Bash(dotnet run *)"
+    ]
+  }
+}
